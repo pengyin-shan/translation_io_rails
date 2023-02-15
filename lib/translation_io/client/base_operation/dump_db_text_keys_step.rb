@@ -39,7 +39,7 @@ module TranslationIO
           @db_fields.keys.each do |table_name|
             table = table_name.constantize
             @db_fields[table_name].each do |column_name|
-              db_strings = table.unscoped.distinct.pluck(column_name)
+              db_strings = table.distinct.pluck(column_name)
               entries += db_strings
             end
           end
