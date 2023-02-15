@@ -39,7 +39,8 @@ module TranslationIO
             @db_fields[table_name].each do |column_name|
               db_strings = if unscoped_item.include? table_name.to_s then table.unscoped.distinct.pluck(column_name) else table.distinct.pluck(column_name) end
               
-              TranslationIO.info table_name.to_s + ' ' + db_strings.to_s
+              TranslationIO.info 'unscoped: ' + table.unscoped.distinct.pluck(column_name).to_sql.to_s
+              TranslationIO.info 'scoped: ' + table.distinct.pluck(column_name).to_sql.to_s
               
               entries += db_strings
             end
