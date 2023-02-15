@@ -35,7 +35,7 @@ module TranslationIO
 
         def extracted_db_entries
           entries = []
-
+          p "keys " + @db_fields.keys.to_s
           @db_fields.keys.each do |table_name|
             p "table name is " + table_name.to_s
             table = table_name.constantize
