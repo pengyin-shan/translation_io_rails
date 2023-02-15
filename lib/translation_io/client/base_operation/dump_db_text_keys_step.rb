@@ -39,6 +39,7 @@ module TranslationIO
           @db_fields.keys.each do |table_name|
             table = table_name.constantize
             @db_fields[table_name].each do |column_name|
+              puts "table name is " + table_name.to_s
               db_strings = if table_name == 'phases' then table.unscoped.distinct.pluck(column_name) else table.distinct.pluck(column_name) end
               entries += db_strings
             end
