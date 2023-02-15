@@ -33,10 +33,11 @@ module TranslationIO
 
         def extracted_db_entries
           entries = []
-          @db_fields.keys.each do |table_name| # keys ["Theme", "QuestionFormat", "Template", "Phase", "Section", "Question", "Annotation"]
+          unscoped_item = ["Phase", "Section"]
+          @db_fields.keys.each do |table_name| 
             table = table_name.constantize
             @db_fields[table_name].each do |column_name|
-              db_strings = if table_name == 'Phase' then table.unscoped.distinct.pluck(column_name) else table.distinct.pluck(column_name) end
+              db_strings = if table_name in unscoped_item then table.unscoped.distinct.pluck(column_name) else table.distinct.pluck(column_name) end
               entries += db_strings
             end
           end
