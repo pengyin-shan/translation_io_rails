@@ -33,7 +33,7 @@ module TranslationIO
 
         def extracted_db_entries
           entries = []
-          unscoped_item = ["Phase", "Section"]
+          unscoped_item = ["Phase", "Section", "Question"]
           @db_fields.keys.each do |table_name| 
             table = table_name.constantize
             @db_fields[table_name].each do |column_name|
