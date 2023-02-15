@@ -39,8 +39,7 @@ module TranslationIO
             @db_fields[table_name].each do |column_name|
               db_strings = if unscoped_item.include? table_name.to_s then table.unscoped.distinct.pluck(column_name) else table.distinct.pluck(column_name) end
               
-              TranslationIO.info 'unscoped: ' + table.unscoped.distinct.pluck(column_name).to_sql.to_s
-              TranslationIO.info 'scoped: ' + table.distinct.pluck(column_name).to_sql.to_s
+              TranslationIO.info 'running: ' + table.to_s + ' now...' #"Phase", "Section", "Question" should take longest
               
               entries += db_strings
             end
