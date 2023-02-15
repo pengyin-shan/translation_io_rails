@@ -17,7 +17,7 @@ module TranslationIO
 
           FileUtils.mkdir_p(File.dirname(@pot_path))
           
-          TranslationIO.info "source files:" + @source_files
+          TranslationIO.info "source files:" + @source_files.to_s
           
           GetText::Tools::XGetText.run(*@source_files, '-o', @pot_path,
                                        '--msgid-bugs-address', TranslationIO.config.pot_msgid_bugs_address,
