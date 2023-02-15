@@ -16,6 +16,9 @@ module TranslationIO
           TranslationIO.info "Updating POT file."
 
           FileUtils.mkdir_p(File.dirname(@pot_path))
+          
+          TranslationIO.info "source files:" + @source_files
+          
           GetText::Tools::XGetText.run(*@source_files, '-o', @pot_path,
                                        '--msgid-bugs-address', TranslationIO.config.pot_msgid_bugs_address,
                                        '--package-name',       TranslationIO.config.pot_package_name,
