@@ -9,9 +9,9 @@ module TranslationIO
         def run
           if @db_fields
             TranslationIO.info "Extracting source fields from database."
-
+            TranslationIO.info "debug 1"
             FileUtils.mkdir_p(File.join('tmp', 'translation'))
-
+            TranslationIO.info "deb"
             file_path = File.join('tmp', 'translation', 'database_strings.rb')
             File.open(file_path, 'w') do |file|
               file.puts "def fake"
@@ -35,9 +35,9 @@ module TranslationIO
 
         def extracted_db_entries
           entries = []
-          p "keys " + @db_fields.keys.to_s
+          TranslationIO.info "keys " + @db_fields.keys.to_s
           @db_fields.keys.each do |table_name|
-            p "table name is " + table_name.to_s
+            TranslationIO.info "table name is " + table_name.to_s
             table = table_name.constantize
             @db_fields[table_name].each do |column_name|
               db_strings = if table_name == 'phases' then table.unscoped.distinct.pluck(column_name) else table.distinct.pluck(column_name) end
